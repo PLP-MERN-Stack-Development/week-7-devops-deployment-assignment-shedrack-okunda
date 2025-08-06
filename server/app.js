@@ -10,6 +10,7 @@ const compression = require("compression");
 const postRoutes = require("./routes/posts");
 const categoryRoutes = require("./routes/categories");
 // const authRoutes = require("./routes/auth");
+const healthRoutes = require("./routes/health");
 const connectDB = require("./config/db");
 const errorHandler = require("./middleware/errorHandling");
 
@@ -47,6 +48,7 @@ if (process.env.NODE_ENV === "development") {
 app.use("/api/posts", postRoutes);
 app.use("/api/categories", categoryRoutes);
 // app.use("/api/auth", authRoutes);
+app.use("/api", healthRoutes);
 
 // Root route
 app.get("/", (req, res) => {

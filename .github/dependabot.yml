@@ -1,0 +1,42 @@
+version: 2
+updates:
+    # Backend dependencies (Node.js - Express)
+    - package-ecosystem: "npm"
+      directory: "/server" # Adjust this path if your backend is in a different folder
+      schedule:
+          interval: "weekly"
+      open-pull-requests-limit: 5
+      ignore:
+          - dependency-name: "express"
+            versions: ["^5.0.0"] # example: skip major upgrades if needed
+      commit-message:
+          prefix: "chore(server):"
+          include: "scope"
+      labels:
+          - "dependencies"
+          - "backend"
+
+    # Frontend dependencies (React + Vite)
+    - package-ecosystem: "npm"
+      directory: "/client" # Adjust this path if your frontend is in a different folder
+      schedule:
+          interval: "weekly"
+      open-pull-requests-limit: 5
+      commit-message:
+          prefix: "chore(client):"
+          include: "scope"
+      labels:
+          - "dependencies"
+          - "frontend"
+
+    # GitHub Actions dependencies
+    - package-ecosystem: "github-actions"
+      directory: "/"
+      schedule:
+          interval: "weekly"
+      commit-message:
+          prefix: "chore(ci):"
+          include: "scope"
+      labels:
+          - "ci"
+          - "github-actions"
