@@ -8,8 +8,8 @@ const connectDB = async () => {
 	try {
 		await mongoose
 			.connect(db, {
-				useNewUrlParser: true,
-				useUnifiedTopology: true,
+				// useNewUrlParser: true,
+				// useUnifiedTopology: true,
 				serverSelectionTimeoutMS: 5000,
 				socketTimeoutMS: 45000,
 			})

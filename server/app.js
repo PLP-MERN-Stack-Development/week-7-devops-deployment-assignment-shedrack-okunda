@@ -4,13 +4,14 @@ const dotenv = require("dotenv");
 const path = require("path");
 const helmet = require("helmet");
 const morgan = require("morgan");
+const compression = require("compression");
 
 // Import routes
 const postRoutes = require("./routes/posts");
 const categoryRoutes = require("./routes/categories");
 // const authRoutes = require("./routes/auth");
 const connectDB = require("./config/db");
-const errorHandler = require("./middleware/errorHandler");
+const errorHandler = require("./middleware/errorHandling");
 
 // Load environment variables
 dotenv.config();
@@ -24,6 +25,7 @@ const corsOptions = { origin: process.env.ORIGIN, credentials: true };
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(compression());
 app.use(helmet());
 
 if (process.env.NODE_ENV === "production") {
